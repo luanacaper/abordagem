@@ -171,11 +171,11 @@ const PADRAO = {
   nome: 'Luana Caper', cidade: 'Goiânia · GO',
   marcasConhecidas: "Sam's Club, Magalu, Posto Ipiranga",
   publicoBase: 'sou mãe, trabalho home office e amo apps e tecnologias que facilitam o dia a dia e a organização da casa',
-  link: 'https://negocioscreators.com/luanacaper/portifolio/'
+  link: 'https://negocioscreators.com/luh/portifolio/?utm_source=SI_abordagem'
 };
 const CAMPOS_PERFIL = ['nome','cidade','marcasConhecidas','publicoBase','link'];
 const CAMPOS_CAMP = ['marca','codigo','descr','problema','publico','proprio'];
-const CHAVE = 'nc-abordagem-v1';
+const CHAVE = 'nc-abordagem-v2';
 
 // Resultados verdadeiros do portfólio (nunca juntar números de marcas diferentes como se fossem do mesmo vídeo).
 const RESULTADOS = {
@@ -257,8 +257,10 @@ function ganchos(){
     { id:'proprio', tipo:'Escrever o meu', txt:'', proprio:true }
   ];
 }
+// Link da abordagem da Seu Influencer definido pela Luana em 16/11/2026: vai exatamente como está.
 function linkUtm(){
   const base = (estado.link||PADRAO.link).trim();
+  if (/utm_source=/.test(base)) return base;
   const cod = (estado.codigo||'').trim() || (estado.marca||'campanha').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
   return `${base}${base.includes('?')?'&':'?'}utm_source=seuinfluencer&utm_content=${cod}`;
 }
